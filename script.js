@@ -178,7 +178,7 @@ function unlockSongs() {
                             <p style="color: var(--romantic-red); font-weight: 600;">The melody that makes your heart sing, my love ✨</p>
                         </div>
                         <audio class="song-audio" preload="metadata">
-                            <source src="sooseki.mp3" type="audio/mpeg">
+                            <source src="Sooseki.mp3" type="audio/mpeg">
                         </audio>
                     </div>
                     <div class="song-item">
@@ -434,4 +434,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Update counter on page load and daily
 updateLoveCounter();
+
 setInterval(updateLoveCounter, 3600000); // Update every hour to catch day changes
