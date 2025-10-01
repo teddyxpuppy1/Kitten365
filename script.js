@@ -314,7 +314,7 @@ function unlockThankYou() {
         unlockedSections.add('thankyou');
         document.getElementById('thankyouContent').innerHTML = `
             <div class="section-header">
-                <h2>Thank You Note 🙏</h2>
+                <h2>Thank You Kittyy 💝</h2>
                 <p>For being you — a small token of gratitude</p>
             </div>
             <div class="letter-container">
@@ -503,3 +503,4 @@ document.addEventListener('DOMContentLoaded', function() {
 // Update counter on page load and daily
 updateLoveCounter();
 setInterval(updateLoveCounter, 3600000); // Update every hour to catch day changes
+
