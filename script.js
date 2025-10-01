@@ -7,11 +7,11 @@ let currentlyPlayingAudio = null;
 function checkWelcomeAnswer() {
     const answer = document.getElementById('nicknameAnswer').value.trim().toLowerCase();
     const correctAnswers = ['kitten', 'my kitten', 'beautiful kitten', 'kittu', 'my kittu'];
-    
+
     if (correctAnswers.some(correct => answer.includes(correct))) {
         document.getElementById('welcomeSuccess').style.display = 'block';
         document.getElementById('welcomeError').style.display = 'none';
-        
+
         setTimeout(() => {
             document.getElementById('welcomePage').classList.remove('active');
             document.getElementById('mainSite').classList.add('active');
@@ -26,24 +26,26 @@ function checkWelcomeAnswer() {
     }
 }
 
-// Section navigation
-function showSection(sectionName) {
+// Section navigation (made robust to accept event or fallback)
+function showSection(sectionName, evt) {
     // Hide all sections
     document.querySelectorAll('.content-section').forEach(section => {
         section.style.display = 'none';
     });
-    
+
     // Remove active class from all nav links
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.classList.remove('active');
     });
-    
+
     // Show selected section
-    document.getElementById(sectionName).style.display = 'block';
-    
+    const el = document.getElementById(sectionName);
+    if (el) el.style.display = 'block';
+
     // Add active class to clicked nav link
-    event.target.classList.add('active');
-    
+    const target = (evt && evt.target) || window.event && window.event.target;
+    if (target) target.classList.add('active');
+
     currentSection = sectionName;
 }
 
@@ -57,7 +59,7 @@ function unlockMemories() {
                 <h2>Our Precious Memories ✨</h2>
                 <p>Every photograph captures a moment of our beautiful love story</p>
             </div>
-            
+
             <div class="gallery-grid">
                 ${generateGalleryItems()}
             </div>
@@ -86,48 +88,47 @@ function generateGalleryItems() {
 
 function getMemoryTitle(index) {
     const titles = [
-        'First Picture in Free Fire 🎮',     // 1
-        'Holding Hands 🤝',                  // 2
-        'Couple Shadow 🌙',                  // 3
-        'Hands Raised to the Sky 🌌',        // 4
-        'Kitten Drawing 🐾',                 // 5
-        'First Booyah 🎉',                   // 6
-        'Spending Time in Free Fire ⏳',     // 7
-        'Eyes Together 👀',                  // 8
-        'Riding Bike 🏍️',                   // 9
-        'Riding Horse 🐎',                   // 10
-        'First Rose 🌹',                     // 11
-        'Giving a Flower 🌸',                // 12
-        'Promise to Stay 🤞',                // 13
-        'Flower Dedicated to You 💐',        // 14
-        'Bunch of Flowers 🌷',               // 15
-        'Bouquet Gift 🌺',                   // 16
+        'First Picture in Free Fire 🎮',
+        'Holding Hands 🤝',
+        'Couple Shadow 🌙',
+        'Hands Raised to the Sky 🌌',
+        'Kitten Drawing 🐾',
+        'First Booyah 🎉',
+        'Spending Time in Free Fire ⏳',
+        'Eyes Together 👀',
+        'Riding Bike 🏍️',
+        'Riding Horse 🐎',
+        'First Rose 🌹',
+        'Giving a Flower 🌸',
+        'Promise to Stay 🤞',
+        'Flower Dedicated to You 💐',
+        'Bunch of Flowers 🌷',
+        'Bouquet Gift 🌺',
     ];
     return titles[index - 1] || `Beautiful Memory ${index}`;
 }
 
 function getMemoryDescription(index) {
     const descriptions = [
-        'Our very first picture captured in Free Fire 🎮',              // 1
-        'The moment our hands came together 🤝',                        // 2
-        'A shadow showing us as one 🌙',                                // 3
-        'Raising hands high towards the endless sky 🌌',                // 4
-        'A small kitten drawing kept close 🐾',                         // 5
-        'The first Booyah we celebrated 🎉',                            // 6
-        'Special time spent together in Free Fire ⏳',                  // 7
-        'Eyes that spoke without words 👀',                             // 8
-        'Riding a bike side by side 🏍️',                               // 9
-        'A horse ride in Minecraft felt magical 🐎',                    // 10
-        'The first rose I gave 🌹',                                     // 11
-        'A simple flower given with care 🌸',                           // 12
-        'A promise made to never go away 🤞',                           // 13
-        'A flower kept only for you 💐',                                // 14
-        'A bunch of flowers given with a smile 🌷',                     // 15
-        'A bouquet gifted straight from the heart 🌺',                  // 16
+        'Our very first picture captured in Free Fire 🎮',
+        'The moment our hands came together 🤝',
+        'A shadow showing us as one 🌙',
+        'Raising hands high towards the endless sky 🌌',
+        'A small kitten drawing kept close 🐾',
+        'The first Booyah we celebrated 🎉',
+        'Special time spent together in Free Fire ⏳',
+        'Eyes that spoke without words 👀',
+        'Riding a bike side by side 🏍️',
+        'A horse ride in Minecraft felt magical 🐎',
+        'The first rose I gave 🌹',
+        'A simple flower given with care 🌸',
+        'A promise made to never go away 🤞',
+        'A flower kept only for you 💐',
+        'A bunch of flowers given with a smile 🌷',
+        'A bouquet gifted straight from the heart 🌺',
     ];
     return descriptions[index - 1] || 'A precious moment in time';
 }
-
 
 // Unlock Dates
 function unlockDates() {
@@ -251,7 +252,6 @@ function unlockSongs() {
         document.getElementById('songsError').style.display = 'block';
     }
 }
-
 // Unlock Letter with Image
 function unlockLetter() {
     const answer = document.getElementById('letterAnswer').value.trim();
@@ -279,18 +279,73 @@ function unlockLetter() {
     }
 }
 
+// NEW: Unlock Commitment (shows c.jpg)
+function unlockCommitment() {
+    const answer = document.getElementById('commitmentAnswer').value.trim().toLowerCase();
+    // Accept 'importance' or 'priority' (partial matches allowed)
+    if (answer.includes('importance') || answer.includes('priority')) {
+        unlockedSections.add('commitment');
+        document.getElementById('commitmentContent').innerHTML = `
+            <div class="section-header">
+                <h2>My Commitment to You 🤝</h2>
+                <p>This is my promise — saved in a little image just for you</p>
+            </div>
+            <div class="letter-container">
+                <div class="letter-wrapper">
+                    <img src="c.jpg" alt="Commitment Image" class="letter-image"
+                         onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&h=1000&fit=crop'">
+                </div>
+                <div class="letter-message">
+                    <p style="text-align: center; font-style: italic; color: var(--romantic-red); font-size: 1.15rem; margin-top: 20px;">
+                        🤍 I connected to you because you are my priority and hold great importance in my life.
+                    </p>
+                </div>
+            </div>
+        `;
+    } else {
+        document.getElementById('commitmentError').style.display = 'block';
+    }
+}
+
+// NEW: Unlock Thank You (shows t.jpg) - any non-empty answer accepted
+function unlockThankYou() {
+    const answer = document.getElementById('thankyouAnswer').value.trim();
+    if (answer.length > 0) {
+        unlockedSections.add('thankyou');
+        document.getElementById('thankyouContent').innerHTML = `
+            <div class="section-header">
+                <h2>Thank You Note 🙏</h2>
+                <p>For being you — a small token of gratitude</p>
+            </div>
+            <div class="letter-container">
+                <div class="letter-wrapper">
+                    <img src="t.jpg" alt="Thank You Image" class="letter-image"
+                         onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&h=1000&fit=crop'">
+                </div>
+                <div class="letter-message">
+                    <p style="text-align: center; font-style: italic; color: var(--romantic-red); font-size: 1.15rem; margin-top: 20px;">
+                        💝 Thank you for filling my life with warmth and unforgettable moments.
+                    </p>
+                </div>
+            </div>
+        `;
+    } else {
+        document.getElementById('thankyouError').style.display = 'block';
+    }
+}
+
 // Improved Music player functionality
 function toggleSong(button) {
     const songItem = button.closest('.song-item');
     const audio = songItem.querySelector('.song-audio');
     const icon = button.querySelector('i');
     const isSpecial = songItem.dataset.special === 'true';
-    
+
     // Stop all other playing songs
     if (currentlyPlayingAudio && currentlyPlayingAudio !== audio) {
         currentlyPlayingAudio.pause();
         currentlyPlayingAudio.currentTime = 0;
-        
+
         // Reset all other buttons
         document.querySelectorAll('.song-item').forEach(item => {
             if (item !== songItem) {
@@ -298,13 +353,13 @@ function toggleSong(button) {
                 const btn = item.querySelector('.play-btn');
                 const ico = btn.querySelector('i');
                 const isItemSpecial = item.dataset.special === 'true';
-                
+
                 ico.className = isItemSpecial ? 'fas fa-heart' : 'fas fa-play';
                 btn.style.background = '';
             }
         });
     }
-    
+
     // Toggle current song
     if (audio.paused) {
         // Play
@@ -325,7 +380,7 @@ function toggleSong(button) {
         button.style.background = '';
         currentlyPlayingAudio = null;
     }
-    
+
     // Handle song end
     audio.onended = () => {
         songItem.classList.remove('playing');
@@ -339,19 +394,18 @@ function toggleSong(button) {
 function updateLoveCounter() {
     const startDate = new Date('2024-09-24');
     startDate.setHours(0, 0, 0, 0); // Reset time to start of day
-    
+
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Reset time to start of day
-    
+
     // Calculate difference in milliseconds
     const timeDiff = today.getTime() - startDate.getTime();
-    
+
     // Convert to days (no +1 needed)
     const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-    
+
     document.getElementById('daysCounter').textContent = daysDiff;
 }
-
 
 // Floating hearts
 function createFloatingHeart() {
@@ -366,8 +420,8 @@ function createFloatingHeart() {
     setTimeout(() => heart.remove(), 10000);
 }
 
-function createFloatingHearts() { 
-    setInterval(createFloatingHeart, 1500); 
+function createFloatingHearts() {
+    setInterval(createFloatingHeart, 1500);
 }
 
 // Rose petals
@@ -383,8 +437,8 @@ function createRosePetal() {
     setTimeout(() => petal.remove(), 10000);
 }
 
-function createRosePetals() { 
-    setInterval(createRosePetal, 3000); 
+function createRosePetals() {
+    setInterval(createRosePetal, 3000);
 }
 
 // Secret Message
@@ -407,6 +461,8 @@ document.addEventListener('keypress', function(e) {
         else if (activeElement.id === 'datesAnswer') unlockDates();
         else if (activeElement.id === 'songsAnswer') unlockSongs();
         else if (activeElement.id === 'letterAnswer') unlockLetter();
+        else if (activeElement.id === 'commitmentAnswer') unlockCommitment();
+        else if (activeElement.id === 'thankyouAnswer') unlockThankYou();
     }
 });
 
@@ -446,8 +502,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Update counter on page load and daily
 updateLoveCounter();
-
 setInterval(updateLoveCounter, 3600000); // Update every hour to catch day changes
-
-
-
