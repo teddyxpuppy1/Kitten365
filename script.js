@@ -190,7 +190,7 @@ function unlockSongs() {
                 <p style="color: var(--romantic-red); font-weight: 600;">The song that holds my heart right after Sooseki 💖</p>
             </div>
             <audio class="song-audio" preload="metadata">
-                <source src="yedhi.mp4" type="audio/mp4">
+                <source src="yedhi.mp3" type="audio/mp4">
             </audio>
         </div>
                     <div class="song-item">
@@ -448,5 +448,6 @@ document.addEventListener('DOMContentLoaded', function() {
 updateLoveCounter();
 
 setInterval(updateLoveCounter, 3600000); // Update every hour to catch day changes
+
 
 
