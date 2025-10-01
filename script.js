@@ -181,6 +181,18 @@ function unlockSongs() {
                             <source src="Sooseki.mp3" type="audio/mpeg">
                         </audio>
                     </div>
+                            <div class="song-item" data-special="true">
+            <button class="play-btn" onclick="toggleSong(this)">
+                <i class="fas fa-heart"></i>
+            </button>
+            <div class="song-info">
+                <h4>🎵 "Yedhi Mana Sakhi" - Another Favorite</h4>
+                <p style="color: var(--romantic-red); font-weight: 600;">The song that holds my heart right after Sooseki 💖</p>
+            </div>
+            <audio class="song-audio" preload="metadata">
+                <source src="yedhi.mp4" type="audio/mp4">
+            </audio>
+        </div>
                     <div class="song-item">
                         <button class="play-btn" onclick="toggleSong(this)">
                             <i class="fas fa-play"></i>
@@ -436,4 +448,5 @@ document.addEventListener('DOMContentLoaded', function() {
 updateLoveCounter();
 
 setInterval(updateLoveCounter, 3600000); // Update every hour to catch day changes
+
 
