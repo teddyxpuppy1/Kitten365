@@ -202,7 +202,7 @@ function unlockSongs() {
                             <p>Every note reminds me of you</p>
                         </div>
                         <audio class="song-audio" preload="metadata">
-                            <source src="evare.mp3" type="audio/mpeg">
+                            <source src="Evare.mp3" type="audio/mpeg">
                         </audio>
                     </div>
                     <div class="song-item">
@@ -436,3 +436,4 @@ document.addEventListener('DOMContentLoaded', function() {
 updateLoveCounter();
 
 setInterval(updateLoveCounter, 3600000); // Update every hour to catch day changes
+
