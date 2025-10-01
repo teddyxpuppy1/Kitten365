@@ -90,7 +90,7 @@ function getMemoryTitle(index) {
     const titles = [
         'First Picture in Free Fire 🎮',
         'Holding Hands 🤝',
-        'Couple Shadow 🌙',
+        'Our Shadow 🌙',
         'Hands Raised to the Sky 🌌',
         'Kitten Drawing 🐾',
         'First Booyah 🎉',
@@ -503,4 +503,5 @@ document.addEventListener('DOMContentLoaded', function() {
 // Update counter on page load and daily
 updateLoveCounter();
 setInterval(updateLoveCounter, 3600000); // Update every hour to catch day changes
+
 
