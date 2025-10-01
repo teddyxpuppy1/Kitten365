@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>For My Dearest Kitten ❤️</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -20,16 +20,16 @@
             <div class="welcome-container">
                 <h1 class="welcome-title">Welcome to Our Story ✨</h1>
                 <p class="welcome-subtitle">This enchanted place was crafted with pure love for someone extraordinary...</p>
-                
+
                 <div class="question-container">
                     <div class="question">💕 What's the sweetest nickname that melts your heart when I call you?</div>
                     <input type="text" id="nicknameAnswer" class="answer-input" placeholder="Type the magic word...">
                 </div>
-                
+
                 <button onclick="checkWelcomeAnswer()" class="submit-btn">
                     <i class="fas fa-heart"></i> Enter Our World Buddi
                 </button>
-                
+
                 <div id="welcomeError" class="error-message">
                     <i class="fas fa-heart-broken"></i> That's not quite right, my love. Try the special name I whisper to you 💕
                 </div>
@@ -39,19 +39,11 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Main Website -->
     <div id="mainSite" class="page">
         <!-- Navigation -->
-        <nav class="nav">
-            <ul class="nav-links">
-                <li><a onclick="showSection('home')" class="active">Home</a></li>
-                <li><a onclick="showSection('memories')">Memories</a></li>
-                <li><a onclick="showSection('dates')">Our Story</a></li>
-                <li><a onclick="showSection('songs')">Our Songs</a></li>
-                <li><a onclick="showSection('letter')">Special Letter</a></li>
-            </ul>
-        </nav>
+
 
         <!-- Home Section -->
         <section id="home" class="content-section" style="display: block;">
@@ -59,7 +51,7 @@
                 <div class="home">
                     <h1>Happy Days Since We Met, Kitten ❤️</h1>
                     <p class="subtitle">September 24, 2024 - A day that changed everything</p>
-                    
+
                     <div class="love-counter">
                         <h3>Days of Pure Love & Friendship</h3>
                         <div class="counter-number" id="daysCounter">0</div>
@@ -80,13 +72,13 @@
                     <div class="lock-icon"><i class="fas fa-lock"></i></div>
                     <h2>Our Precious Memories ✨</h2>
                     <p>Answer this romantic question to unlock our treasure trove of beautiful memories!</p>
-                    
+
                     <div class="quiz-question">
                         <div class="question">🌸 What was the very first thing that made your heart flutter when we started talking?</div>
                         <input type="text" id="memoriesAnswer" class="answer-input" placeholder="Share that magical moment...">
                         <button onclick="unlockMemories()" class="submit-btn">💖 Unlock Our Memories</button>
                     </div>
-                    
+
                     <div id="memoriesError" class="error-message">
                         <i class="fas fa-heart-broken"></i> Not quite right, but I treasure every thought from your heart! Try again 💕
                     </div>
@@ -101,13 +93,13 @@
                     <div class="lock-icon"><i class="fas fa-lock"></i></div>
                     <h2>Our Romantic Timeline 💖</h2>
                     <p>Answer this to unveil our journey of love and beautiful moments!</p>
-                    
+
                     <div class="quiz-question">
                         <div class="question">🎬 What was the magical day when we went for our very first movie together?</div>
                         <input type="text" id="datesAnswer" class="answer-input" placeholder="Remember that special date...">
                         <button onclick="unlockDates()" class="submit-btn">💍 Unlock Our Timeline</button>
                     </div>
-                    
+
                     <div id="datesError" class="error-message">
                         <i class="fas fa-heart-broken"></i> Think about that wonderful day in March when we shared popcorn and dreams! 💕
                     </div>
@@ -122,15 +114,36 @@
                     <div class="lock-icon"><i class="fas fa-lock"></i></div>
                     <h2>Kitten's Love Playlist 🎵</h2>
                     <p>Answer this to unlock our romantic symphony of love!</p>
-                    
+
                     <div class="quiz-question">
                         <div class="question">🎶 What is your Kittu's most favorite song that makes your heart dance?</div>
                         <input type="text" id="songsAnswer" class="answer-input" placeholder="The song that touches your soul...">
                         <button onclick="unlockSongs()" class="submit-btn">🎼 Unlock Love Playlist</button>
                     </div>
-                    
+
                     <div id="songsError" class="error-message">
                         <i class="fas fa-heart-broken"></i> Think of that special song that always makes you smile, my love! 💕
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commitment Section (NEW - before Special Letter) -->
+        <section id="commitment" class="content-section">
+            <div class="container">
+                <div id="commitmentContent" class="locked-section">
+                    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    <h2>My Commitment to You 🤝</h2>
+                    <p>Answer this to unlock a special promise and image.</p>
+
+                    <div class="quiz-question">
+                        <div class="question">📝 What is the reason that I connected to you this much?</div>
+                        <input type="text" id="commitmentAnswer" class="answer-input" placeholder="(hint: importance / priority)">
+                        <button onclick="unlockCommitment()" class="submit-btn">🔓 Unlock Commitment</button>
+                    </div>
+
+                    <div id="commitmentError" class="error-message">
+                        <i class="fas fa-heart-broken"></i> Hmm, try answering with "importance" or "priority" 💕
                     </div>
                 </div>
             </div>
@@ -143,15 +156,36 @@
                     <div class="lock-icon"><i class="fas fa-lock"></i></div>
                     <h2>A Special Letter For You 💌</h2>
                     <p>Answer this question to unlock a heartfelt message I've written just for you!</p>
-                    
+
                     <div class="quiz-question">
                         <div class="question">💝 What makes our bond so incredibly special and unique?</div>
                         <input type="text" id="letterAnswer" class="answer-input" placeholder="Share what's in your heart...">
                         <button onclick="unlockLetter()" class="submit-btn">💌 Open Special Letter</button>
                     </div>
-                    
+
                     <div id="letterError" class="error-message">
                         <i class="fas fa-heart-broken"></i> Any answer from your heart is the right one, my love! 💕
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thank You Section (NEW - after Special Letter) -->
+        <section id="thankyou" class="content-section">
+            <div class="container">
+                <div id="thankyouContent" class="locked-section">
+                    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    <h2>Thank You Note 🙏</h2>
+                    <p>Answer this simple question to reveal a thank-you image.</p>
+
+                    <div class="quiz-question">
+                        <div class="question">📅 What is the date (the first thing that comes to your mind) when you remember me?</div>
+                        <input type="text" id="thankyouAnswer" class="answer-input" placeholder="Any answer is accepted">
+                        <button onclick="unlockThankYou()" class="submit-btn">💝 Reveal Thank You</button>
+                    </div>
+
+                    <div id="thankyouError" class="error-message">
+                        <i class="fas fa-heart-broken"></i> Please type something to unlock it — any answer will do! 💕
                     </div>
                 </div>
             </div>
@@ -160,7 +194,7 @@
 
     <!-- Popup Backdrop -->
     <div class="popup-backdrop" id="popupBackdrop" onclick="closeSecretMessage()"></div>
-    
+
     <!-- Secret Message Popup -->
     <div class="secret-popup" id="secretPopup">
         <div class="popup-content">
