@@ -52,7 +52,7 @@ function showSection(sectionName, evt) {
 // Unlock Memories
 function unlockMemories() {
     const answer = document.getElementById('memoriesAnswer').value.trim().toLowerCase();
-    if (answer.length > 5) {
+    if (answer === "freshers") {
         unlockedSections.add('memories');
         document.getElementById('memoriesContent').innerHTML = `
             <div class="section-header">
@@ -64,6 +64,7 @@ function unlockMemories() {
                 ${generateGalleryItems()}
             </div>
         `;
+        document.getElementById('memoriesError').style.display = 'none'; // hide error if shown earlier
     } else {
         document.getElementById('memoriesError').style.display = 'block';
     }
@@ -254,8 +255,8 @@ function unlockSongs() {
 }
 // Unlock Letter with Image
 function unlockLetter() {
-    const answer = document.getElementById('letterAnswer').value.trim();
-    if (answer.length > 3) {
+    const answer = document.getElementById('letterAnswer').value.trim().toLowerCase();
+    if (answer === "time") {
         unlockedSections.add('letter');
         document.getElementById('letterContent').innerHTML = `
             <div class="section-header">
@@ -274,10 +275,12 @@ function unlockLetter() {
                 </div>
             </div>
         `;
+        document.getElementById('letterError').style.display = 'none'; // hide error if shown before
     } else {
         document.getElementById('letterError').style.display = 'block';
     }
 }
+
 
 // NEW: Unlock Commitment (shows c.jpg)
 function unlockCommitment() {
@@ -307,10 +310,10 @@ function unlockCommitment() {
     }
 }
 
-// NEW: Unlock Thank You (shows t.jpg) - any non-empty answer accepted
+// NEW: Unlock Thank You (shows t.jpg) - answer must be "hair"
 function unlockThankYou() {
-    const answer = document.getElementById('thankyouAnswer').value.trim();
-    if (answer.length > 0) {
+    const answer = document.getElementById('thankyouAnswer').value.trim().toLowerCase();
+    if (answer === "hair") {
         unlockedSections.add('thankyou');
         document.getElementById('thankyouContent').innerHTML = `
             <div class="section-header">
@@ -329,10 +332,12 @@ function unlockThankYou() {
                 </div>
             </div>
         `;
+        document.getElementById('thankyouError').style.display = 'none'; // hide error if previously shown
     } else {
         document.getElementById('thankyouError').style.display = 'block';
     }
 }
+
 
 // Improved Music player functionality
 function toggleSong(button) {
@@ -645,3 +650,4 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 1000);
 });
+
