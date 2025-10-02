@@ -127,6 +127,105 @@
                 </div>
             </div>
         </section>
+        <!-- Catch the Hearts Game Section -->
+        <section id="game" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Catch the Hearts Game 💕</h2>
+                    <p>Catch as many hearts as you can before time runs out!</p>
+                </div>
+                <div id="catchHeartsGame">
+                    <div class="game-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Score:</span>
+                            <span id="gameScore" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Time:</span>
+                            <span id="gameTime" class="stat-value">30</span>
+                        </div>
+                    </div>
+                    <canvas id="heartsCanvas" width="600" height="400"></canvas>
+                    <button id="startGameBtn" class="submit-btn" onclick="startGame()">
+                        <i class="fas fa-play"></i> Start Game
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Virtual Gift Box Section -->
+        <section id="gifts" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Virtual Gift Box 🎁</h2>
+                    <p>Click each gift to reveal a special message just for you!</p>
+                    <p>Six Gifts For The Six Letters In KITTEN</p>
+                </div>
+                <div class="gift-grid">
+                    <div class="gift-card" onclick="flipGift(this)">
+                        <div class="gift-inner">
+                            <div class="gift-front">
+                                <img src="gift.jpg" alt="Gift 1" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&h=300&fit=crop'">
+                            </div>
+                            <div class="gift-back">
+                                "My Kitten, my forever happiness 🐾💖 — every smile of yours is my safe place."
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gift-card" onclick="flipGift(this)">
+                        <div class="gift-inner">
+                            <div class="gift-front">
+                                <img src="gift.jpg" alt="Gift 2" onerror="this.src='https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=300&h=300&fit=crop'">
+                            </div>
+                            <div class="gift-back">
+                                "You’re not just my Kitten, you’re my heartbeat, my home, and my everything. 🌙✨"
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gift-card" onclick="flipGift(this)">
+                        <div class="gift-inner">
+                            <div class="gift-front">
+                                <img src="gift.jpg" alt="Gift 3" onerror="this.src='https://images.unsplash.com/photo-1518893063132-36e46dbe2428?w=300&h=300&fit=crop'">
+                            </div>
+                            <div class="gift-back">
+                                "Every moment with you feels like magic, my sweet Kitten — a story only we can write. 📖💕"
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gift-card" onclick="flipGift(this)">
+                        <div class="gift-inner">
+                            <div class="gift-front">
+                                <img src="gift.jpg" alt="Gift 4" onerror="this.src='https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=300&h=300&fit=crop'">
+                            </div>
+                            <div class="gift-back">
+                                "When I say Kitten, I don’t just mean you… I mean my whole world in one word. 🌎💞"
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gift-card" onclick="flipGift(this)">
+                        <div class="gift-inner">
+                            <div class="gift-front">
+                                <img src="gift.jpg" alt="Gift 5" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&h=300&fit=crop'">
+                            </div>
+                            <div class="gift-back">
+                                "Kitten, you’re my once-in-a-lifetime, my miracle, my reason to believe in you. 🌹🌟"
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gift-card" onclick="flipGift(this)">
+                        <div class="gift-inner">
+                            <div class="gift-front">
+                                <img src="gift.jpg" alt="Gift 6" onerror="this.src='https://images.unsplash.com/photo-1606800052052-a08af7148866?w=300&h=300&fit=crop'">
+                            </div>
+                            <div class="gift-back">
+                                "No matter the distance, the days, or the years — my heart will always whisper one name: Kitten. 💓⏳"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Commitment Section (NEW - before Special Letter) -->
         <section id="commitment" class="content-section">
@@ -190,6 +289,33 @@
                 </div>
             </div>
         </section>
+                <!-- Countdown to Next Anniversary -->
+                <section id="countdown" class="content-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>Counting Down to Our Next Milestone ⏰</h2>
+                            <p>September 24, 2026 - Our Special Day</p>
+                        </div>
+                        <div class="countdown-container">
+                            <div class="countdown-box">
+                                <div class="countdown-number" id="days">0</div>
+                                <div class="countdown-label">Days</div>
+                            </div>
+                            <div class="countdown-box">
+                                <div class="countdown-number" id="hours">0</div>
+                                <div class="countdown-label">Hours</div>
+                            </div>
+                            <div class="countdown-box">
+                                <div class="countdown-number" id="minutes">0</div>
+                                <div class="countdown-label">Minutes</div>
+                            </div>
+                            <div class="countdown-box">
+                                <div class="countdown-number" id="seconds">0</div>
+                                <div class="countdown-label">Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
     </div>
 
     <!-- Popup Backdrop -->
