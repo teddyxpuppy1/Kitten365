@@ -88,7 +88,7 @@ function generateGalleryItems() {
 
 function getMemoryTitle(index) {
     const titles = [
-        'First Picture in Free Fire 🎮',
+        'Picture in Free Fire 🎮',
         'Holding Hands 🤝',
         'Our Shadow 🌙',
         'Hands Raised to the Sky 🌌',
@@ -504,4 +504,144 @@ document.addEventListener('DOMContentLoaded', function() {
 updateLoveCounter();
 setInterval(updateLoveCounter, 3600000); // Update every hour to catch day changes
 
+// Update counter on page load and daily
+updateLoveCounter();
+setInterval(updateLoveCounter, 3600000); // Update every hour to catch day changes
 
+// Catch the Hearts Game
+let gameCanvas, gameCtx, gameScore, gameTime, gameInterval, gameRunning;
+let hearts = [];
+let basket = { x: 250, y: 360, width: 100, height: 40 };
+
+function initGame() {
+    gameCanvas = document.getElementById('heartsCanvas');
+    if (!gameCanvas) return;
+    gameCtx = gameCanvas.getContext('2d');
+    
+    // Mouse movement for basket
+    gameCanvas.addEventListener('mousemove', (e) => {
+        if (gameRunning) {
+            const rect = gameCanvas.getBoundingClientRect();
+            basket.x = e.clientX - rect.left - basket.width / 2;
+            basket.x = Math.max(0, Math.min(gameCanvas.width - basket.width, basket.x));
+        }
+    });
+}
+
+function startGame() {
+    gameScore = 0;
+    gameTime = 30;
+    hearts = [];
+    gameRunning = true;
+    
+    document.getElementById('gameScore').textContent = gameScore;
+    document.getElementById('gameTime').textContent = gameTime;
+    document.getElementById('startGameBtn').disabled = true;
+    
+    // Timer countdown
+    const timer = setInterval(() => {
+        gameTime--;
+        document.getElementById('gameTime').textContent = gameTime;
+        if (gameTime <= 0) {
+            clearInterval(timer);
+            endGame();
+        }
+    }, 1000);
+    
+    // Spawn hearts
+    const heartSpawner = setInterval(() => {
+        if (!gameRunning) {
+            clearInterval(heartSpawner);
+            return;
+        }
+        hearts.push({
+            x: Math.random() * (gameCanvas.width - 30),
+            y: -30,
+            speed: 2 + Math.random() * 2,
+            emoji: ['❤️', '💕', '💖', '💗', '💓'][Math.floor(Math.random() * 5)]
+        });
+    }, 800);
+    
+    gameLoop();
+}
+
+function gameLoop() {
+    if (!gameRunning) return;
+    
+    gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+    
+    // Draw basket
+    gameCtx.fillStyle = '#ff6b9d';
+    gameCtx.fillRect(basket.x, basket.y, basket.width, basket.height);
+    gameCtx.fillStyle = 'white';
+    gameCtx.font = '20px Arial';
+    gameCtx.textAlign = 'center';
+    gameCtx.fillText('🧺', basket.x + basket.width / 2, basket.y + 30);
+    
+    // Update and draw hearts
+    for (let i = hearts.length - 1; i >= 0; i--) {
+        const heart = hearts[i];
+        heart.y += heart.speed;
+        
+        gameCtx.font = '30px Arial';
+        gameCtx.fillText(heart.emoji, heart.x, heart.y);
+        
+        // Check collision with basket
+        if (heart.y + 30 >= basket.y && 
+            heart.y <= basket.y + basket.height &&
+            heart.x >= basket.x && 
+            heart.x <= basket.x + basket.width) {
+            hearts.splice(i, 1);
+            gameScore++;
+            document.getElementById('gameScore').textContent = gameScore;
+        }
+        // Remove if off screen
+        else if (heart.y > gameCanvas.height) {
+            hearts.splice(i, 1);
+        }
+    }
+    
+    requestAnimationFrame(gameLoop);
+}
+
+function endGame() {
+    gameRunning = false;
+    document.getElementById('startGameBtn').disabled = false;
+    alert(`Game Over! Your score: ${gameScore} hearts caught! 💕`);
+}
+
+// Gift Box Flip Function
+function flipGift(card) {
+    card.classList.toggle('flipped');
+}
+
+// Countdown to September 24, 2026
+function updateCountdown() {
+    const targetDate = new Date('2026-09-24T00:00:00').getTime();
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+    
+    if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+    } else {
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        document.getElementById('seconds').textContent = '0';
+    }
+}
+
+// Initialize game and countdown
+document.addEventListener('DOMContentLoaded', function() {
+    initGame();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+});
